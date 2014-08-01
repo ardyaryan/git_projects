@@ -1,6 +1,6 @@
 <?php
 	// this page will take the Google map api's URL and will parce it out from JSON to HTML
-	echo "example:<br/>http://maps.google.com/maps/api/geocode/json?address=New%20York&sensor=false<br/>";
+	echo "Example (copy this link and submit it below, to make changes to the address change New York to something else):<br/><br/>http://maps.google.com/maps/api/geocode/json?address=New%20York&sensor=false<br/><br/>";
 	//
 	function define_type($url){
 		$content = get_headers($url, 1);
@@ -19,38 +19,73 @@
 		$json_raw = file_get_contents($url_content);
 		$json = json_decode($json_raw);
  		foreach($json as $k1 => $v1){
-			foreach($v1 as $k2 => $v2){
-				//print_r($v2);
-				foreach($v2 as $k3 => $v3){
-					if($k3=='address_components'){
-						echo "<div style=\"font-family:verdana;font-size:12px;\"><br/>";
-						echo "Address Components:<hr/>";
-						for($i=0;$i<4;$i++){
-							$v3_1[$i] = get_object_vars($v3[$i]);
-							$v3_2 = $v3_1[$i];
-							echo "<b>Long Name: </b>".$v3_2['long_name']."<br/>";
-							echo "<b>Short Name: </b>".$v3_2['short_name']."<br/>";
-							echo "<b>Types: </b>".$v3_2['types'][0]." , ".$v3_2['types'][1]."<br/><br/>";
+			if($k1 == 'results'){
+				foreach($v1 as $k2 => $v2){
+					foreach($v2 as $k3 => $v3){
+						if($k3=='address_components'){
+							echo "<div style=\"font-family:verdana;font-size:12px;\"><br/>";
+							echo "Address Components:<hr/>";
+							for($i=0;$i<4;$i++){
+								$v3_1[$i] = get_object_vars($v3[$i]);
+								$v3_2 = $v3_1[$i];
+								echo "<b>Long Name: </b>".$v3_2['long_name']."<br/>";
+								echo "<b>Short Name: </b>".$v3_2['short_name']."<br/>";
+								echo "<b>Types: </b>".$v3_2['types'][0]." , ".$v3_2['types'][1]."<br/><br/>";
+								}
+							echo "<br/></div>";	
 							}
-						echo "<br/></div>";	
+						if($k3=='formatted_address'){
+							echo "<div style=\"font-family:verdana;font-size:12px;\"><br/>";
+							echo "Formatted Address:<hr/>";
+							echo $v3."<br/>";
+							echo "<br/></div>";	
 						}
-					if($k3=='formatted_address'){
-						echo "<div style=\"font-family:verdana;font-size:12px;\"><br/>";
-						echo "Formatted Address:<hr/>";
-						echo $v3."<br/>";
-						echo "<br/></div>";	
-					}
-					if($k3=='geometry'){
-						echo "<div style=\"font-family:verdana;font-size:12px;\"><br/>";
-						echo "Geometry:<hr/>";
-						echo $v3."<br/>";
-						echo "<hr/></div>";	
+						if($k3=='geometry'){
+							echo "<div style=\"font-family:verdana;font-size:12px;\"><br/>";
+							echo "Geometry:<hr/></div>";
+							foreach($v3 as $k4 => $v4){
+								if($k4 == 'bouns'){
+								print_r($k4);
+								echo "<br/>";
+								print_r($v4);
+								echo "<br/>";
+								}
+								if($k4 == 'location'){
+									$location = get_object_vars($v4);
+									echo "<div style=\"font-family:verdana;font-size:12px;\"><br/>Location:<br/>";
+									echo "<b>Lat: </b>".$location['lat']."<br/><b>Long: </b>".$location['lng']."<br/>";
+									echo "</div>";
+								}
+								if($k4 == 'location_type'){
+									echo "<div style=\"font-family:verdana;font-size:12px;\"><br/>Location Type:<br/>";
+									echo $v4;
+									echo "</div>";
+								}
+								if($k4 == 'viewport'){
+									$view_port = get_object_vars($v4);
+									$n_e = get_object_vars($view_port['northeast']);
+									$s_w = get_object_vars($view_port['southwest']);							
+									echo "<div style=\"font-family:verdana;font-size:12px;\"><br/>Viewport -> North-East: <br/>";
+									echo "<b>Lat: </b>".$n_e['lat']."<br/><b>Long: </b>".$n_e['lng']."<br/><br/>Viewport -> South-West: <br/>";
+									echo "<b>Lat: </b>".$s_w['lat']."<br/><b>Long: </b>".$s_w['lng']."<br/>";
+									echo "</div><br/>";
+								}
+							}
+						}
+						if($k3=='types'){
+							echo "<div style=\"font-family:verdana;font-size:12px;\">Types:<hr/>";
+							echo $v3[0]." , ".$v3[1];;
+							echo "</div><br/>";
+						}	
 					}
 				}
+			}//end of if results
+			if($k1 == 'status'){
+				echo "<div style=\"font-family:verdana;font-size:12px;\"><br/>Status: <hr/>";
+				echo $v1;
+				echo "</div><br/>";
 			}
 		}			
-	//print_r($json);
-	//return $json;
 	}
 	
 ?>
