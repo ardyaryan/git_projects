@@ -1,7 +1,4 @@
 <?php
- 	// this page will take the Google map api's URL and will parce it out from JSON to HTML
-	echo "Example (copy this link and submit it below, to make changes to the address change New York to something else):<br/><br/>http://maps.google.com/maps/api/geocode/json?address=New%20York&sensor=false<br/><br/>";
-	//
 	function define_type($url){
 		$content = get_headers($url, 1);
 		if (strpos($content['Content-Type'],'json'))
@@ -93,18 +90,30 @@
 <head>
 </head>
 <body>
- <form method="get">
-<input type="text" size="150" name="url" ><br/>
+<div style="font-family:verdana;font-size:12px;">
+<form method="get">
+<label>City: </label><input type="text" size="20" name="city" >
+<label for="select">Select:</label>
+<select name="type" id="select">
+<option value="json">JSON</option>
+<option value="sml">XML</option>
+</select>
+<br/>
+
 <input type="submit" >
 </form>
 <?php
-
-if(isset($url)){
-	$url = $HTTP_GET_VARS['url'];
+// this page will take the Google map api's URL and will parce it out from JSON to HTML
+echo "The Constructed link for json will be like : http://maps.google.com/maps/api/geocode/json?address=New%20York&sensor=false<br/><br/>";
+if(isset($HTTP_GET_VARS['city'])){
+	$city = str_replace(" ","",$HTTP_GET_VARS['city']);
+	$type = $HTTP_GET_VARS['type'];
+	$url = "http://maps.google.com/maps/api/geocode/".$type."?address=".$city."&sensor=false";
 	$result = define_type($url);
 	$json = json_parser($url);
 }
 ?>
+</div>
 </body>
 </html>
 
