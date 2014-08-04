@@ -1,5 +1,5 @@
 <?php
-	// this page will take the Google map api's URL and will parce it out from JSON to HTML
+ 	// this page will take the Google map api's URL and will parce it out from JSON to HTML
 	echo "Example (copy this link and submit it below, to make changes to the address change New York to something else):<br/><br/>http://maps.google.com/maps/api/geocode/json?address=New%20York&sensor=false<br/><br/>";
 	//
 	function define_type($url){
@@ -87,26 +87,23 @@
 			}
 		}			
 	}
-	
+ 	
 ?>
 <html>
 <head>
 </head>
 <body>
  <form method="get">
-<input type="text" size="150" name="url"><br/>
-<input type="submit">
+<input type="text" size="150" name="url" ><br/>
+<input type="submit" >
 </form>
 <?php
-$url_content = $_GET['url'];
+
 if(isset($url)){
 	$url = $HTTP_GET_VARS['url'];
 	$result = define_type($url);
-	$json = json_parser($url_content);
-	
-	
+	$json = json_parser($url);
 }
-
 ?>
 </body>
 </html>
