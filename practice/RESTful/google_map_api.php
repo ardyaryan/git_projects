@@ -12,8 +12,8 @@
 	return $type;	
 	}
 	
-	function json_parser($url_content){
-		$json_raw = file_get_contents($url_content);
+	function json_parser($url){
+		$json_raw = file_get_contents($url);
 		$json = json_decode($json_raw);
  		foreach($json as $k1 => $v1){
 			if($k1 == 'results'){
@@ -84,33 +84,88 @@
 			}
 		}			
 	}
+	function xmlParser($url){
+		$xml = get_object_vars(simplexml_load_file($url));
+		foreach($xml as $k1 => $v1){
+			if($k1 == 'status'){
+				echo "<b>Status:</b><br/> ".$v1."<br/><hr/>";
+			}
+			if($k1 == 'result'){
+				$v1 = get_object_vars($v1);
+					foreach($v1 as $k2 => $v2){
+						if($k2 == 'type'){
+							echo "<b>Type:</b> <br/>".$v2[0]." , ".$v2[1]."<br/><hr/>";
+						}
+						if($k2 == 'formatted_address'){
+							echo "<b>Formatted Address:</b> <br/>".$v2."<br/><hr/>";
+						}
+						if($k2 == 'address_component'){
+							foreach($v2 as $k3 => $v3){
+								$v3 = get_object_vars($v3);
+								echo "<b>Long Name: </b>".$v3['long_name']."<br/><b>Short Name:</b> ".$v3['short_name']."<br/><b>Type:</b> ".$v3['type'][0]." , ".$v3['type'][1]."<br/><br/>";
+								}
+						echo "<br/><hr/>"; 		
+						}
+						if($k2 == 'geometry'){
+							echo "<b>Geometry:</b><br/><br/><hr/>";
+							foreach($v2 as $k3 => $v3){															
+								$v3 = get_object_vars($v3);
+								if($k3 == 'location'){echo "<b>Location:</b><br/>Lat. :".$v3['lat']."<br/>Long. :".$v3['lng']."<br/><br/>";}
+								//if($k3 == 'location_type'){echo "<b>Location Type:</b><br/>".$v3."<br/><br/>";}
+								if($k3 == 'viewport'){
+									echo "<b>Viewport:</b><br/><br/>";
+									$v3_s = get_object_vars($v3['southwest']);
+									$v3_n = get_object_vars($v3['northeast']);
+									echo "<b>South West: </b><br/>Lat. :".$v3_s['lat']."<br/>Long. :".$v3_s['lng']."<br/><br/>";
+									echo "<b>North East: </b><br/>Lat. :".$v3_n['lat']."<br/>Long. :".$v3_n['lng']."<br/><br/>";
+								}
+								if($k3 == 'bounds'){
+									echo "<b>Bounds:</b><br/><br/>";
+									$v3_s = get_object_vars($v3['southwest']);
+									$v3_n = get_object_vars($v3['northeast']);
+									echo "<b>South West: </b><br/>Lat. :".$v3_s['lat']."<br/>Long. :".$v3_s['lng']."<br/><br/>";
+									echo "<b>North East: </b><br/>Lat. :".$v3_n['lat']."<br/>Long. :".$v3_n['lng']."<br/><br/>";
+								}
+							}
+						}
+					}											
+			}
+		}
+	
+	}
  	
 ?>
 <html>
 <head>
 </head>
 <body>
-<div style="font-family:verdana;font-size:12px;">
+<div style="font-family:verdana;font-size:12px; margin-left:20px; margin-top:20px; width:1000px;">
 <form method="get">
 <label>City: </label><input type="text" size="20" name="city" >
-<label for="select">Select:</label>
+<label for="select">Select Data Type:</label>
 <select name="type" id="select">
 <option value="json">JSON</option>
-<option value="sml">XML</option>
+<option value="xml">XML</option>
 </select>
 <br/>
-
 <input type="submit" >
 </form>
 <?php
 // this page will take the Google map api's URL and will parce it out from JSON to HTML
-echo "The Constructed link for json will be like : http://maps.google.com/maps/api/geocode/json?address=New%20York&sensor=false<br/><br/>";
+
 if(isset($HTTP_GET_VARS['city'])){
 	$city = str_replace(" ","",$HTTP_GET_VARS['city']);
 	$type = $HTTP_GET_VARS['type'];
 	$url = "http://maps.google.com/maps/api/geocode/".$type."?address=".$city."&sensor=false";
-	$result = define_type($url);
-	$json = json_parser($url);
+	echo "<b>The Constructed link will be : </b>".$url."<br/><br/>";
+	if($type=="json"){
+		$result = define_type($url);
+		$json = json_parser($url);
+	}
+	if($type=="xml"){
+		xmlParser($url);
+	}
+	
 }
 ?>
 </div>
