@@ -1,3 +1,7 @@
-filmaker version 12
-OBCD Dirver for filemaker required to connect to MySQL
+++++++++++++++++++++++
+++ important Notes  ++
+++++++++++++++++++++++
+
+1- filmaker version 12
+2- ODBC Dirver for filemaker required to connect to MySQL
 
