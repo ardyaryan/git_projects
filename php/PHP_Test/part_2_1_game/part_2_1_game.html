@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Part2_1</title>
+</head>
+<body id="body">
+<script type="text/javascript">
+function getWord() {	
+		var myWord = document.getElementById("word").value;
+		var leng = myWord.length;
+		var counter = (2*leng)-1;
+		var myArray = [];
+		for (i = 0; i <= leng-1; i++) {
+			myArray[i] = myWord.substr(0, i+1);	
+		}
+		for (j = 0; j <= leng-2; j++) {
+			myArray[i+j] = myWord.substr(j+1, leng);
+		}
+		var div = document.getElementById("array");
+		div.innerHTML = '<br/>Combination :<br/>' + myArray;
+}
+</script>
+
+
+<input id="word" type="text" value="game"></input>
+<button onclick="getWord()">Get Array</button>
+<div id="array"><p>Enter a word in the field above</p></div>
+</body>
+</html>
