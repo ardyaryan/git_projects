@@ -1,7 +1,7 @@
 <?php 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-//            this script get the lengh of a square 			 //
-//          generates an array of cordinates of an spiral        //
+//            this script gets the lengh of a square and		 //
+//  generates an array of cordinates of a Square shape spiral    //
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
 // extracting cordinates from generated arrays and displaying them
@@ -95,8 +95,8 @@ function spiral($l){
 		print_array($result[0][$j]); //display results
 		$f==0 ? exit() : $f--; // check if rotation has ended
 		$xy = get_cordinates($result[0][$j]); // getting last cordinates
-		$x = $xy['x']; // assining new x & y
-		$y = $xy['y'];// assining new x & y
+		$x = $xy['x']; // assigning new x & y
+		$y = $xy['y'];// assigning new x & y
 		if($flag == 'green'){$l--;}	 // don't change $l if its the first loop
 		//
 		$result[1][$j] = inc_y($x,$y,$l); // shift up :: offset $l
