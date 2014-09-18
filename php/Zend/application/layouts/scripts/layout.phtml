@@ -1,0 +1,25 @@
+<html>
+<head>
+<title><?php //echo Zend_Controller_Front::getInstance()->getRequest()->getActionName();?></title>
+<?php echo $this->headLink()->appendStylesheet($this->baseUrl('/styles/style.css')); ?>
+</head>
+<body>
+<div class="container">
+    <div class="header" align="center">
+   	<img src="<?php echo $this->baseUrl('/images/logo.png');?>" class="logo" width="150"  alt=""/>    </div>
+<?php    include('header.php');?>
+        <div class="content" align="center">
+<?php 
+echo $this->layout()->content; 
+/* next line gets the url */
+//echo "<br/><br/>".$this->userAgent()->getServerValue('request_uri');
+?>
+
+        </div>
+    <div class="footer" align="center">
+    	<h3><br/> Developed by : Ardy Aryan <br/> 
+    	e-mail: ardy.aryan@gmail.com</h3>
+    </div>
+</div>
+</body>
+</html>

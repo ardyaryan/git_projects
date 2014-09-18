@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+<style type="text/css">
+body {background: #FFF;	margin: 0;	padding: 0;	color: #000;}
+
+.header{margin-left:-8px; margin-right:-4px; margin-top:-22px; background: #292929; height:120px; box-shadow: 4px 4px 5px #888888;}
+
+h1 { font-family:serif; color:#FFFFFF;}
+.content { font-family:arial; font-size:16px;}
+.container { font-family:arial; font-size:16px;}
+
+.footer{margin-left:-8px; margin-right:-4px; margin-top:-10px; background: #6C6C6C; height:60px; box-shadow: 4px 4px 5px #888888;}
+.logo { position:relative; left:-350px; top:25px;}
+h3 { font-family:arial; color:#FFF; font-size:12px; font-weight:100;}
+</style>
