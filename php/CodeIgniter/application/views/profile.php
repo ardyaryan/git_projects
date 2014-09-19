@@ -1,6 +1,7 @@
 <?php
 	include ('header.php');
 	include ('navigation.php');
+	echo "<br/><br/>";
 	if (empty($records))
 	{	
 		echo "<div align=\"left\" class=\"home\"><br/>You are logged out<br/><br/></div><br/><br/>";

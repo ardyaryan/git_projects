@@ -1,6 +1,7 @@
 <?php
 	include ('header.php');
 	include ('navigation.php');
+	echo "<br/><br/>";
 	$this->load->helper('form');
 	echo validation_errors();
 	echo form_open('home/check_login?page=register');

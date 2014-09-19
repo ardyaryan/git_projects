@@ -3,15 +3,20 @@
 <style type="text/css">
 body {background: #FFF;	margin: 0;	padding: 0;	color: #000;}
 
-.header{margin-left:-8px; margin-right:-4px; margin-top:-22px; background: #292929; height:120px; box-shadow: 4px 4px 5px #888888;}
 
+a:visited {text-decoration: none; text-transform:none; color:#3A3A3A; font-family:arial; font-size:14px; font-weight:400;}
+a:link {text-decoration: none;text-transform:none;color:#3A3A3A;font-family:arial;font-size:14px;	font-weight:400;}
+a:active {text-decoration: none;color:#3A3A3A; font-family:arial; font-size:14px; font-weight:400;}
+a:hover {color:#A2A2A2;}
 h1 { font-family:arial; color:#FFFFFF;}
 h2 {  font-size:14px;font-family:arial; font-weight:100;}
 h3 { color:#FFFFFF; font-size:12px;font-family:arial; font-weight:100;}
+.header{margin-left:-8px; margin-right:-4px; margin-top:-22px; background: #292929; height:120px; box-shadow: 4px 4px 5px #888888;}
 .content { font-family:arial; font-size:16px;}
 .container { font-family:arial; font-size:16px;}
-
+.navigation{margin-left:-8px; margin-right:-4px; margin-top:8px; background:#E8E8E8; height:25px; padding:5px;vertical-align:middle; z-index:100;  box-shadow: 4px 4px 5px #888888;}
 .footer{margin-left:-8px; margin-right:-4px; margin-top:-10px; background: #6C6C6C; height:60px; box-shadow: 4px 4px 5px #888888; }
 .logo{ position:relative; left:-350px; top:-10px;}
 .home {width:800px;font-size:13px;border:#ABABAB; border-style:solid; border-width:thin;padding:10px;}
+.map {width:750px; padding:0px; border-color:#878787; border-width:thin; border-style:solid;}
 </style>

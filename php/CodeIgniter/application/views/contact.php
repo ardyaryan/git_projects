@@ -1,6 +1,7 @@
 <?php
 	include ('header.php');
 	include ('navigation.php');
+	echo "<br/><br/>";
 	$this->load->helper('form');
 	echo validation_errors();
 		echo form_open('home/check_login?page=contact');
@@ -29,7 +30,6 @@
 		echo "<br/>";
 		echo form_submit($submit);	
 	echo form_close();
-	echo "<br><br> this is from inside contact<br><br>";
 	include ('footer.php');
 ?>     	
 

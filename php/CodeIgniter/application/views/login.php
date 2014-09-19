@@ -1,6 +1,7 @@
 <?php
 	include ('header.php');
 	include ('navigation.php');
+	echo "<br/><br/>";
 	$post = $_POST;
 	if($_SESSION['logged'] != 1 )
 		{
@@ -42,7 +43,7 @@
 				$logout_link = base_url(array('index.php','home', 'logout'));
 				echo "<a href=\"$logout_link\">log out</a>";			
 		}
-	//	
-	echo "<br/><br/>this is from inside login<br/><br/>";
+	//
+	echo "<br/><br/>";	
 	include ('footer.php');	
 ?>

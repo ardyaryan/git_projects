@@ -11,6 +11,7 @@
         <div class="content" align="center">
 <?php
 	include ('navigation.php');
+	echo "<br/><br/>";
 	$post = $_POST;
 	$this->load->helper('form');
 	echo form_open('home/google_maps');
@@ -26,8 +27,8 @@
 		echo form_submit($submit);	
 	echo form_close();
 	//
-	echo "<div style=\"width:750px; padding:10px;\">";
+	echo "<div class=\"map\">";
 	echo $map['html'];
-	echo "<br/></div>";
+	echo "</div><br/><br/>";
 	include ('footer.php');	
 ?>
