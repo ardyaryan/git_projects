@@ -113,4 +113,30 @@ class Home extends CI_Controller{
 	{
 		$this->load->view('thankyou');
 	}
+	//
+	public function google_maps (){
+		$this->load->library('Googlemaps');
+		$config = array();
+		$config['center'] = 'Toronto, Canada';
+		$config['zoom'] = 8;
+		//
+		$marker = array();
+		if(isset($_POST['position']) )
+		{ 
+			$marker['position'] = $this->input->post('position');
+			$config['center'] = $this->input->post('position');
+		}
+		else
+		{ 
+			$marker['position'] = '#18 Yorkville, Toronto, ON , Canada';
+		}
+		$this->googlemaps->initialize($config);
+		$this->googlemaps->add_marker($marker);
+		
+		$data['map'] = $this->googlemaps->create_map();
+		$this->load->view('google_maps', $data);
+	}	
+
+
+	
 }

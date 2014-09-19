@@ -5,7 +5,8 @@
 			<br/> - Store new user information <br/> - Retrieve all users information <br/>
 			- Form Validation <br/>
 			- Login System <br/>
-			- Email through Contact page 
+			- Email through Contact page <br/>
+			- Google Map<br/>
 			</p>
 			
 	</div><br/><br/>";
