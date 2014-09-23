@@ -77,7 +77,11 @@ class Home extends CI_Controller{
 		}
 		else
 		{
-			$this->load->view('login');
+			$username = $_SESSION['username'];
+			$this->load->model('profile');
+			$data['records'] = $this->profile->getData($username); // name of the model, not the class
+			$this->load->view('login',$data);
+			//$this->load->view('login');
 		}
 	}
 	// 

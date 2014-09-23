@@ -1,7 +1,7 @@
 <?php
 	include ('header.php');
 	include ('navigation.php');
-	echo "<br/><br/>";
+	echo "<br/><div class=\"home\"><br/><br/>";
 	$post = $_POST;
 	if($_SESSION['logged'] != 1 )
 		{
@@ -39,11 +39,18 @@
 	}
 	if($_SESSION['logged'] == 1 )
 		{
-				echo "You are now Logged in <br/>"; 
+				echo "You are now Logged in <br/><br/>"; 
+				//
+				echo "<div align=\"left\" style=\"padding-left:20px;\">
+				User ID: ".$records[0]->userid."<br/>
+				Name: ".$records[0]->name."<br/>
+				Email: ".$records[0]->email."<br/>
+				Username: ".$records[0]->username."</div><br/><br/>";
+				//
 				$logout_link = base_url(array('index.php','home', 'logout'));
 				echo "<a href=\"$logout_link\">log out</a>";			
 		}
 	//
-	echo "<br/><br/>";	
+	echo "</div><br/><br/>";	
 	include ('footer.php');	
 ?>

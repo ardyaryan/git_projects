@@ -13,7 +13,7 @@
   <tr align="center">
     <td><?php 	echo "<a href=\"$url1\">Home</a>"; ?></td>
     <td><?php 	echo "<a href=\"$url2\">Register</a>"; ?></td>
-    <td><?php 	echo "<a href=\"$url3\">Login</a>"; ?></td>
+    <td><?php 	echo "<a href=\"$url3\">Log In</a>"; ?></td>
     <td><?php 	echo "<a href=\"$url4\">Profile</a>"; ?></td>
     <td><?php 	echo "<a href=\"$url5\">Contact Us</a>"; ?></td>
     <td><?php 	echo "<a href=\"$url6\">Google Maps</a>"; ?></td>

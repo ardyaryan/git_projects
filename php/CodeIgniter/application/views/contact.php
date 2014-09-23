@@ -4,6 +4,7 @@
 	echo "<br/><br/>";
 	$this->load->helper('form');
 	echo validation_errors();
+		echo "<div>";
 		echo form_open('home/check_login?page=contact');
 		$email = array(
 						'name' 			=> 'email',
@@ -30,6 +31,7 @@
 		echo "<br/>";
 		echo form_submit($submit);	
 	echo form_close();
+	echo "</div>";
 	include ('footer.php');
 ?>     	
 
